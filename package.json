@@ -1,0 +1,25 @@
+{
+  "name": "jira-agent-cloud-function",
+  "version": "1.0.0",
+  "description": "Jira AI Agent as Google Cloud Function",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "npm run build && functions-framework --target=jiraAgent --source=dist",
+    "start": "npm run dev",
+    "watch": "tsc --watch",
+    "deploy": "npm run build && gcloud functions deploy jira-agent --runtime nodejs20 --trigger-http --allow-unauthenticated --entry-point jiraAgent --source=dist"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.0.0",
+    "@modelcontextprotocol/sdk": "^1.16.0",
+    "@types/node": "^24.1.0",
+    "openai": "^5.10.1",
+    "dotenv": "^17.2.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
